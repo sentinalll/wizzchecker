@@ -54,7 +54,7 @@ public class SchedulerRestService {
                 .filter(f -> f.getBundle().equals("BASIC"))
                 .map(Fare::getFullBasePrice)
                 .mapToInt(FullBasePrice::getAmount)
-                .min();
+                .max();
 
         OptionalInt returnFlightPrice = response.getReturnFlights()
                 .get(0)
@@ -63,7 +63,7 @@ public class SchedulerRestService {
                 .filter(f -> f.getBundle().equals("BASIC"))
                 .map(Fare::getFullBasePrice)
                 .mapToInt(FullBasePrice::getAmount)
-                .min();
+                .max();
 
         log.info("Outbound Flight Price: {} UAH, Return Flight Price: {} UAH",
                 outboundFlightPrice.orElse(0),
